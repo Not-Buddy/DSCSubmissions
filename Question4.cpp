@@ -1,43 +1,23 @@
 #include <iostream>
-#include <vector>
-#include <string>
 
-void calculateCartons(int bottles) 
+void calculateCartons(int bottles)
 {
-    std::vector<std::pair<std::string, int>> cartons = 
-    {
-        {"xl", 48},
-        {"large", 24},
-        {"medium", 12},
-        {"small", 6}
-    };
+    int xl = bottles / 48;
+    bottles %= 48;
+    
+    int l = bottles / 24;
+    bottles %= 24;
+    
+    int m = bottles / 12;
+    bottles %= 12;
+    
+    int s = (bottles + 5) / 6;
 
-    std::vector<std::string> result;
-
-    for (const auto& carton : cartons) 
-    {
-        int count = bottles / carton.second;
-        if (count > 0) 
-        {
-            result.push_back(std::to_string(count) + " " + carton.first);
-            bottles -= count * carton.second;
-        }
-    }
-
-    for (size_t i = 0; i < result.size(); ++i) 
-    {
-        std::cout << result[i];
-        if (i != result.size() - 1) 
-        {
-            std::cout << ", ";
-        }
-    }
-    std::cout << std::endl;
+    std::cout << xl << " xl, " << l << " large, " << m << " medium, " << s << " small" << std::endl;
 }
 
 int main() 
 {
-
     int bottles;
     std::cout << "Enter the number of bottles: ";
     std::cin >> bottles;
@@ -46,4 +26,3 @@ int main()
 
     return 0;
 }
-
